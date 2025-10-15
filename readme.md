@@ -1,5 +1,5 @@
 # Dotfiles
-A *profile-based*, modular, and idempotent dotfiles setup for quickly configuring new environments. Features a sophisticated profile system that allows you to load environment-specific configurations while maintaining common shared settings.
+A *profile-based*, modular, and idempotent dotfiles setup for quickly configuring new environments. Features a profile system that allows you to load environment-specific configurations while maintaining common shared settings.
 
 This is truly more about the journey than the destination!
 
@@ -37,16 +37,27 @@ source ~/.dotfiles/init/init.sh --force --profile=bnz
 alias load-dotfiles='~/.dotfiles/init/init.sh'
 ```
 
-## 📁 Profile-Based Architecture
+### 🎯 Usage Examples
 
-### Available Profiles
-- **common**: Base configurations loaded for all profiles
-- **bnz**: Bank of New Zealand specific configurations
-- **2cents**: 2cents project configurations  
-- **linz**: Linz project configurations
-- **lotto**: Lotto project configurations
-- **chesstimate**: Chesstimate project configurations
-- **personal**: Personal development configurations
+> 🚨🚨🚨 Never load it like `./.dotfiles/init/init.sh --profile=bnz` because it executes, it does not source and will forget what was executed.
+
+### Loading Profiles
+
+```bash
+# Load BNZ profile (common + bnz configs)
+source ~/.dotfiles/init/init.sh --profile=bnz
+
+# Load personal profile with force flag
+source ~/.dotfiles/init/init.sh --force --profile=bnz
+
+# Case insensitive - all work the same
+source ~/.dotfiles/init/init.sh --force --profile=BNZ
+source ~/.dotfiles/init/init.sh --force --profile=bnz
+source ~/.dotfiles/init/init.sh --force --profile=Bnz
+```
+
+
+## 📁 Profile-Based Architecture
 
 ### Profile Structure
 
@@ -68,24 +79,6 @@ profiles/
     ├── functions/     # Profile-specific functions
     ├── secrets/       # Profile secrets (git-ignored)
     └── utils/         # Profile utility scripts
-```
-## 🎯 Usage Examples
-
-> 🚨🚨🚨 Never load it like `./.dotfiles/init/init.sh --profile=bnz` because it executes, it does not source and will forget what was executed.
-
-### Loading Profiles
-
-```bash
-# Load BNZ profile (common + bnz configs)
-source ~/.dotfiles/init/init.sh --profile=bnz
-
-# Load personal profile with force flag
-source ~/.dotfiles/init/init.sh --force --profile=bnz
-
-# Case insensitive - all work the same
-source ~/.dotfiles/init/init.sh --force --profile=BNZ
-source ~/.dotfiles/init/init.sh --force --profile=bnz
-source ~/.dotfiles/init/init.sh --force --profile=Bnz
 ```
 
 ## Error Handling
