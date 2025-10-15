@@ -1,0 +1,15 @@
+nvim-data
+.swp
+~\
+~/
+~\heroku
+~/heroku
+github-copilot
+jgit
+update-notifier**
+GitKrakenCli
+.idea
+
+secrets/.ssh/**
+secrets/**
+**/secrets/**
