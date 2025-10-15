@@ -1,3 +1,7 @@
+# =============================================================================
+# Git aliases and functions
+# =============================================================================
+
 # Define function instead of alias (works better with pipes and eval)
 # Functions expand properly with eval inside confirm.
 # No need for quoting gymnastics with alias.
@@ -5,6 +9,7 @@
 function clearLocalBranches() {
   confirm "git branch | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | xargs git branch -D"
 }
+alias removeLocalBranches="clearLocalBranches"
 
 function gc() {
   git commit -m "$1"
@@ -35,4 +40,14 @@ alias gr='git reset'
 alias grh='git reset --hard'
 alias gs='git status'
 alias gst='git stash'
-alias removeLocalBranches="clearLocalBranches"
+
+
+# Quick release workflow
+function release() {
+	git add -A && git commit -m "$1" && npm run version && git push
+}
+
+# Enable auto setup remote for git
+function git-autoSetupRemote() {
+	git config --global --add --bool push.autoSetupRemote true
+}
